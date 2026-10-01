@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mantle</title>
+<style>
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#09090b;color:#fff;font-family:Arial,sans-serif}
+.container{text-align:center}
+h1{font-size:42px;margin:0 0 12px}
+p{color:#a1a1aa;margin:0 0 30px;font-size:17px}
+button{padding:15px 30px;background:#fff;color:#09090b;border:0;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer}
+button:hover{background:#e4e4e7}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>MANTLE</h1>
+<p>Download and open the file, then play.</p>
+<button onclick="downloadMantle()">Download Mantle.html</button>
+</div>
+<script>
+async function downloadMantle(){
+try{
+const r=await fetch("/Mantle.html",{cache:"no-store"});
+if(!r.ok)throw new Error();
+const b=await r.blob(),u=URL.createObjectURL(b),a=document.createElement("a");
+a.href=u;a.download="Mantle.html";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(u);
+}catch(e){alert("Make sure Mantle.html is uploaded to the same Vercel project.")}
+}
+</script>
+</body>
+</html>
